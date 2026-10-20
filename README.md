@@ -1,5 +1,7 @@
 # Skills
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 用于集中维护个人 Codex 技能的仓库。每个技能独立存放在 `skills/<技能名>/`，包含 `SKILL.md`、参考资料，以及执行工作流需要的脚本或模板。
 
 ## 技能目录
@@ -34,7 +36,7 @@ skills/ai-table-datasource-plugin-generator 这个技能。
 请安装 https://github.com/slx-world/skills/tree/master/skills/feishu-bitable-data-sync-plugin-generator
 ```
 
-私有仓库需要本机具有对应仓库的 GitHub 访问权限。连接 GitHub 插件与本机 Git/CLI 登录是不同的访问方式，安装脚本若无法读取私有仓库，可使用已登录的 GitHub CLI 克隆后按下面的方法安装。不要把访问令牌写进聊天或仓库。
+本仓库公开提供，无需 GitHub 登录即可浏览、下载或通过 Git 克隆。向仓库推送修改仍需对应写入权限。不要把访问令牌写进聊天或仓库。
 
 安装完成后，在下一轮对话中调用技能。
 
@@ -43,7 +45,7 @@ skills/ai-table-datasource-plugin-generator 这个技能。
 先进入用于保存仓库的目录：
 
 ```powershell
-gh repo clone slx-world/skills
+git clone https://github.com/slx-world/skills.git
 Set-Location skills
 
 $skillHome = if ($env:CODEX_HOME) {
@@ -103,3 +105,9 @@ skills/
 仓库版本和已经安装到本机的版本互相独立，`git pull` 不会自动更新用户技能目录。更新时先拉取仓库，再检查差异并同步整个技能目录，保留自己的修改。技能的版本记录在 `SKILL.md` 的 `metadata.version`。
 
 添加新技能、目录要求和提交前检查见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+## 开源许可
+
+本仓库的原创技能说明、脚本和模板采用 [MIT License](LICENSE)。允许使用、修改、分发及商业使用，分发时保留版权和许可声明；软件按原样提供。
+
+引用的飞书、钉钉官方文档及工程所依赖的第三方软件仍适用各自的许可与使用条款，本仓库的许可不替代它们。

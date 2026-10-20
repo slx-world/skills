@@ -17,7 +17,7 @@
 https://github.com/slx-world/skills/tree/master/skills/feishu-bitable-data-sync-plugin-generator
 ```
 
-私有仓库需具有 GitHub 访问权限。也可克隆仓库后，将整个技能目录复制到 `$CODEX_HOME/skills/`，未设置 CODEX_HOME 时为 `~/.codex/skills/`。不要仅复制 SKILL.md；已有安装先检查和备份本地修改，安装后下一轮对话调用。
+本仓库已公开，无需登录即可读取和克隆。也可克隆仓库后，将整个技能目录复制到 `$CODEX_HOME/skills/`，未设置 CODEX_HOME 时为 `~/.codex/skills/`。不要仅复制 SKILL.md；已有安装先检查和备份本地修改，安装后下一轮对话调用。
 
 ## 调用示例
 
