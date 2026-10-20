@@ -7,8 +7,9 @@
 | 技能 | 用途 | 使用说明 |
 | --- | --- | --- |
 | [AI 表格数据源插件生成器](skills/ai-table-datasource-plugin-generator/) | 为钉钉 AI 表格生成数据源同步插件，包括配置页面、同步接口、签名校验与数据库/API适配代码 | [详细指南](skills/ai-table-datasource-plugin-generator/README.md) |
+| [飞书多维表格数据同步插件生成器](skills/feishu-bitable-data-sync-plugin-generator/) | 为飞书 Base 生成配置页面、meta.json、表结构/分页记录接口与飞书签名校验 | [详细指南](skills/feishu-bitable-data-sync-plugin-generator/README.md) |
 
-当前生成器是根据钉钉开发指南制作的 Codex 自定义技能，不是千问办公官方技能的转载。它提供经过本地验证的示例工程；实际数据源的接入和钉钉端联调按具体需求完成。
+两个生成器分别根据对应平台的开发指南制作，提供经过本地验证的原创示例工程。它们是 Codex 自定义技能，真实数据源接入和对应宿主的联调按具体需求完成。飞书与钉钉的 SDK、签名、字段枚举和分页结构不同，不能互换。
 
 ## 安装到 Codex
 
@@ -25,6 +26,12 @@ skills/ai-table-datasource-plugin-generator 这个技能。
 
 ```text
 请安装 https://github.com/slx-world/skills/tree/master/skills/ai-table-datasource-plugin-generator
+```
+
+安装飞书版本时使用：
+
+```text
+请安装 https://github.com/slx-world/skills/tree/master/skills/feishu-bitable-data-sync-plugin-generator
 ```
 
 私有仓库需要本机具有对应仓库的 GitHub 访问权限。连接 GitHub 插件与本机 Git/CLI 登录是不同的访问方式，安装脚本若无法读取私有仓库，可使用已登录的 GitHub CLI 克隆后按下面的方法安装。不要把访问令牌写进聊天或仓库。
@@ -44,12 +51,13 @@ $skillHome = if ($env:CODEX_HOME) {
 } else {
     Join-Path $env:USERPROFILE '.codex\skills'
 }
-$skillTarget = Join-Path $skillHome 'ai-table-datasource-plugin-generator'
+$skillName = 'feishu-bitable-data-sync-plugin-generator' # 钉钉版本可改为 ai-table-datasource-plugin-generator
+$skillTarget = Join-Path $skillHome $skillName
 if (Test-Path -LiteralPath $skillTarget) {
     throw '该技能已存在。请先备份或合并本地修改，再执行更新。'
 }
 New-Item -ItemType Directory -Path $skillHome -Force | Out-Null
-Copy-Item -LiteralPath '.\skills\ai-table-datasource-plugin-generator' -Destination $skillTarget -Recurse
+Copy-Item -LiteralPath (Join-Path '.\skills' $skillName) -Destination $skillTarget -Recurse
 ```
 
 应复制整个技能文件夹，保留 `references/`、`scripts/` 和 `assets/`，不能只复制 `SKILL.md`。默认用户技能目录是 `~/.codex/skills/`；设置 `CODEX_HOME` 时使用其下的 `skills/`。
@@ -65,6 +73,14 @@ Copy-Item -LiteralPath '.\skills\ai-table-datasource-plugin-generator' -Destinat
 
 技能也可以根据自然语言自动匹配。显式使用 `$ai-table-datasource-plugin-generator` 可以明确指定它。
 
+飞书示例：
+
+```text
+使用 $feishu-bitable-data-sync-plugin-generator，
+根据我提供的 ERP 官方 API 文档生成库存同步到飞书多维表格的插件，
+包含 meta.json、飞书验签、分页、配置前端和本地验证。
+```
+
 ## 仓库结构
 
 ```text
@@ -72,11 +88,12 @@ skills/
 ├── README.md
 ├── CONTRIBUTING.md
 └── skills/
-    └── ai-table-datasource-plugin-generator/
+    ├── ai-table-datasource-plugin-generator/          # 钉钉
+    └── feishu-bitable-data-sync-plugin-generator/    # 飞书
         ├── README.md             # 人类阅读的使用指南
         ├── SKILL.md              # Codex 工作流入口
         ├── agents/openai.yaml    # 技能名称与调用示例
-        ├── references/           # 协议、适配器、发布说明
+        ├── references/           # 协议、字段、适配、来源和发布说明
         ├── scripts/scaffold.py   # 本地工程生成脚本
         └── assets/starter/       # 前后端示例与协议测试
 ```

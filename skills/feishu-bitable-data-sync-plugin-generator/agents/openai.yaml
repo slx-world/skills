@@ -1,0 +1,4 @@
+interface:
+  display_name: "飞书多维表格数据同步插件生成器"
+  short_description: "生成飞书多维表格数据同步插件，包含配置页面、同步接口、签名校验和数据适配器"
+  default_prompt: "使用 $feishu-bitable-data-sync-plugin-generator，为我的外部数据源生成飞书多维表格同步插件并完成本地验证。"
