@@ -1,0 +1,8 @@
+{
+  "name": "dingtalk-datasource-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.6.0" },
+  "scripts": { "start": "node --env-file=.env server/server.mjs", "test": "node --test" }
+}

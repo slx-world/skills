@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 表格数据源插件生成器"
+  short_description: "生成钉钉 AI 表格数据源插件，包含配置前端、同步接口、签名校验与数据适配器"
+  default_prompt: "使用 $ai-table-datasource-plugin-generator，为我的外部数据源生成钉钉 AI 表格同步插件，并完成本地验证。"
